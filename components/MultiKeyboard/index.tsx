@@ -50,6 +50,7 @@ export default function MultipleKeyboards() {
 
   function handleTextureSelect(texture: KeycapTexture) {
     if (texture.id === selectedTextureId || isAnimating) return;
+    setIsAnimating(true);
     setSelectedTextureId(texture.id);
     setBackgroundText(
       KEYCAP_TEXTURES.find((t) => t.id === texture.id)?.name || "",
@@ -118,6 +119,7 @@ export default function MultipleKeyboards() {
                     : "cursor-pointer border-gray-300 hover:border-gray-500",
                   isAnimating && "cursor-not-allowed opacity-50",
                 )}
+                disabled={isAnimating}
               >
                 <div className="mb-3 overflow-hidden rounded border-2 border-black bg-gray-100">
                   <Image
