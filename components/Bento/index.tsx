@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { Bounded } from "./Bounded";
+import { Bounded } from "../Bounded";
 import Image from "next/image";
 
 type BentoBoxProps = {

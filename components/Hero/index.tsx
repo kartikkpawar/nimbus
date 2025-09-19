@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Bounded } from "./Bounded";
+import { Bounded } from "../Bounded";
 import { Canvas } from "@react-three/fiber";
-import HeroScene from "./HeroScene";
+import HeroScene from "./Scene";
 
 export default function Hero() {
   return (

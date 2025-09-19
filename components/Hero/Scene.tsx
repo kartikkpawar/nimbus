@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Keyboard } from "./Keyboard";
+import { Keyboard } from "../Keyboard";
 import { Environment, PerspectiveCamera } from "@react-three/drei";
-import { Keycap } from "./Keycap";
+import { Keycap } from "../Keycap";
 
 export default function HeroScene() {
   const scalingFactor = window.innerWidth <= 650 ? 0.5 : 1;
