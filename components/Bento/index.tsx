@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import { Bounded } from "../Bounded";
 import Image from "next/image";
+import FadeIn from "../FadeIn";
 
 type BentoBoxProps = {
   image: string;
@@ -52,14 +53,19 @@ export default function Bento() {
 
   return (
     <Bounded>
-      <h2 className="font-bold-slanted mb-8 scroll-pt-6 text-6xl uppercase md:text-8xl">
-        Vapor75 Features
-      </h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
-        {bentoData.map((bento) => (
-          <BentoBoxItem item={bento} key={bento.image} />
-        ))}
-      </div>
+      <FadeIn>
+        <h2 className="font-bold-slanted mb-8 scroll-pt-6 text-6xl uppercase md:text-8xl">
+          Vapor75 Features
+        </h2>
+        <FadeIn
+          className="grid grid-cols-1 gap-4 md:grid-cols-6"
+          targetChildren
+        >
+          {bentoData.map((bento) => (
+            <BentoBoxItem item={bento} key={bento.image} />
+          ))}
+        </FadeIn>
+      </FadeIn>
     </Bounded>
   );
 }
