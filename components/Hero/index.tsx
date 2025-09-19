@@ -3,8 +3,37 @@ import React from "react";
 import { Bounded } from "../Bounded";
 import { Canvas } from "@react-three/fiber";
 import HeroScene from "./Scene";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(useGSAP, SplitText);
 
 export default function Hero() {
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion:no-preference)", () => {
+      const split = SplitText.create(".hero-heading", {
+        type: "chars",
+        mask: "lines",
+        linesClass: "line++",
+      });
+      const tl = gsap.timeline({ delay: 3.2 });
+
+      tl.from(split.chars, {
+        opacity: "0",
+        y: -120,
+        ease: "back",
+        duration: 0.4,
+        stagger: 0.07,
+      }).to(".hero-body", { opacity: 1, duration: 0.6, ease: "power2.out" });
+    });
+    mm.add("(prefers-reduced-motion:reduced)", () => {
+      gsap.set(".hero-heading, .hero-body", { opacity: 1 });
+    });
+  });
+
   return (
     <section className="blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg">
       <div className="hero-scene pointer-events-none sticky top-0 h-dvh w-full">
@@ -27,7 +56,7 @@ export default function Hero() {
 
         <Bounded
           fullWidth
-          className="hero-body absolute inset-x-0 bottom-0 md:right-[8vw] md:left-auto"
+          className="hero-body absolute inset-x-0 bottom-0 opacity-0 md:right-[8vw] md:left-auto"
           innerClassName="flex flex-col gap-3"
         >
           <div className="max-w-md">
