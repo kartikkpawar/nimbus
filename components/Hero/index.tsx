@@ -35,7 +35,7 @@ export default function Hero() {
   });
 
   return (
-    <section className="blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg">
+    <section className="hero blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg motion-safe:h-[300vh]">
       <div className="hero-scene pointer-events-none sticky top-0 h-dvh w-full">
         <Canvas shadows="soft">
           <HeroScene />

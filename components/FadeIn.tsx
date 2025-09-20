@@ -17,7 +17,7 @@ type Props = {
 export default function FadeIn({
   children,
   className,
-  start = "top 50%",
+  start = "top 95%",
   targetChildren = false,
   vars = {},
 }: Props) {
