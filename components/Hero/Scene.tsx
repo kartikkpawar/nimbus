@@ -154,7 +154,7 @@ export default function HeroScene() {
             .to(
               keyboard.rotation,
               {
-                x: Math.PI * -2 * 0.8,
+                x: Math.PI * -2 + 0.8,
                 y: 0,
                 z: 0,
               },
