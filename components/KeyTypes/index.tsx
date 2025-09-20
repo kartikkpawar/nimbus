@@ -26,7 +26,10 @@ export default function index() {
   return (
     <Bounded className="relative" innerClassName="flex flex-col justify-center">
       <FadeIn>
-        <h2 className="font-bold-slanted scroll-pt-6 text-6xl uppercase md:text-8xl">
+        <h2
+          id="switch-playground"
+          className="font-bold-slanted scroll-pt-6 text-6xl uppercase md:text-8xl"
+        >
           Craft your click
         </h2>
         <span className="mb-6 max-w-4xl text-xl text-pretty">
@@ -35,7 +38,7 @@ export default function index() {
 
         <FadeIn
           targetChildren
-          className="grid grid-cols-1 gap-4 outline-hidden sm:grid-cols-2"
+          className="grid grid-cols-1 gap-4 overflow-hidden sm:grid-cols-2"
         >
           {switchData.map((item) => (
             <SwitchWrapper key={item.id} {...item} />
@@ -91,7 +94,7 @@ function SwitchWrapper({ hexCode, id: color, name }: SwitchProps) {
       </Canvas>
       <div
         className={clsx(
-          "font-black-slanted gri absolute inset-0 -z-10 grid place-items-center text-8xl uppercase",
+          "font-black-slanted absolute inset-0 -z-10 grid place-items-center text-8xl uppercase",
           bgColor,
         )}
       >
@@ -102,7 +105,7 @@ function SwitchWrapper({ hexCode, id: color, name }: SwitchProps) {
             dominantBaseline="middle"
             textAnchor="middle"
             fontSize={18}
-            className="font-bold-slanted fill-white/30 uppercase mix-blend-overlay group-hover:fill-white/100 motion-safe:transition-all motion-safe:duration-700"
+            className="font-black-slanted fill-white/30 uppercase mix-blend-overlay group-hover:fill-white/100 motion-safe:transition-all motion-safe:duration-700"
           >
             {Array.from({ length: 8 }, (_, index) => (
               <tspan
