@@ -96,6 +96,14 @@ export default function HeroScene() {
       const tl = gsap.timeline({
         ease: "power2.inOut",
       });
+
+      if (typeof window !== undefined) {
+        const intialScrollY = window.scrollY;
+        if (intialScrollY === 0) {
+          document.body.style.overflow = "hidden";
+        }
+      }
+
       tl.to(keyboard.position, {
         x: 0,
         y: -0.5,
@@ -121,6 +129,10 @@ export default function HeroScene() {
           "<",
         )
         .call(() => {
+          if (typeof window !== undefined) {
+            document.body.style.overflow = "";
+          }
+
           const keyCaps = keyCapRef.current;
           if (!keyboard || !keyCaps) return;
 

@@ -6,8 +6,9 @@ import HeroScene from "./Scene";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP, SplitText);
+gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
 export default function Hero() {
   useGSAP(() => {
@@ -28,6 +29,24 @@ export default function Hero() {
         duration: 0.4,
         stagger: 0.07,
       }).to(".hero-body", { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+      gsap.fromTo(
+        ".hero-scene",
+        {
+          background:
+            "linear-gradient(to bottom, #000000, #0f172a, #062f4a, #7fa0b9)",
+        },
+        {
+          background:
+            "linear-gradient(to bottom, #ffffff, #ffffff, #ffffff, #ffffff)",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "50% bottom",
+            scrub: 1,
+          },
+        },
+      );
     });
     mm.add("(prefers-reduced-motion:reduced)", () => {
       gsap.set(".hero-heading, .hero-body", { opacity: 1 });
@@ -35,7 +54,7 @@ export default function Hero() {
   });
 
   return (
-    <section className="hero blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg motion-safe:h-[300vh]">
+    <section className="hero relative h-dvh text-white text-shadow-black/30 text-shadow-lg motion-safe:h-[300vh]">
       <div className="hero-scene pointer-events-none sticky top-0 h-dvh w-full">
         <Canvas shadows="soft">
           <HeroScene />
