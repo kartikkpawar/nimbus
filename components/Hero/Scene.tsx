@@ -13,21 +13,22 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function CameraController() {
   const { camera, size } = useThree();
-
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const targetRef = useRef(new THREE.Vector3(0, 0, 0));
   const currentPositionRef = useRef(new THREE.Vector3(0, 0, 4));
-
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const baseCameraPosition = { x: 0, y: 0, z: 4 };
+  const baseCameraPosition = {
+    x: 0,
+    y: 0,
+    z: 4,
+  };
 
   useFrame(() => {
     const mouse = mouseRef.current;
-    const tiltX = (mouse.y - 0.5) * 0.3;
-    const tiltY = (mouse.x - 0.5) * 0.3;
+
     if (prefersReducedMotion) {
       camera.position.set(
         baseCameraPosition.x,
@@ -37,13 +38,17 @@ function CameraController() {
       camera.lookAt(targetRef.current);
       return;
     }
-    const target = new THREE.Vector3(
+
+    const tiltX = (mouse.y - 0.5) * 0.3;
+    const tiltY = (mouse.x - 0.5) * 0.3;
+
+    const targetPosition = new THREE.Vector3(
       baseCameraPosition.x + tiltY,
       baseCameraPosition.y - tiltX,
       baseCameraPosition.z,
     );
 
-    currentPositionRef.current.lerp(target, 0.1);
+    currentPositionRef.current.lerp(targetPosition, 0.1);
 
     camera.position.copy(currentPositionRef.current);
     camera.lookAt(targetRef.current);
@@ -75,7 +80,8 @@ export default function HeroScene() {
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion:no-preference)", () => {
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
       if (!keyboardGroupRef.current) return;
 
       const keyboard = keyboardGroupRef.current;
@@ -97,9 +103,9 @@ export default function HeroScene() {
         ease: "power2.inOut",
       });
 
-      if (typeof window !== undefined) {
-        const intialScrollY = window.scrollY;
-        if (intialScrollY === 0) {
+      if (typeof window !== "undefined") {
+        const initialScrollY = window.scrollY;
+        if (initialScrollY === 0) {
           document.body.style.overflow = "hidden";
         }
       }
@@ -110,7 +116,17 @@ export default function HeroScene() {
         z: 0.5,
         duration: 2,
       })
-        .to(keyboard.rotation, { x: 1.4, y: 0, z: 0, duration: 1.8 }, "<")
+        .to(
+          keyboard.rotation,
+          {
+            x: 1.4,
+            y: 0,
+            z: 0,
+            duration: 1.8,
+          },
+          "<",
+        )
+
         .to(keyboard.position, {
           x: 0.2,
           y: -0.5,
@@ -129,12 +145,13 @@ export default function HeroScene() {
           "<",
         )
         .call(() => {
-          if (typeof window !== undefined) {
+          if (typeof window !== "undefined") {
             document.body.style.overflow = "";
           }
 
-          const keyCaps = keyCapRef.current;
-          if (!keyboard || !keyCaps) return;
+          const keycaps = keyCapRef.current;
+
+          if (!keyboard || !keycaps) return;
 
           const scrollTimeline = gsap.timeline({
             scrollTrigger: {
@@ -160,7 +177,18 @@ export default function HeroScene() {
               },
               "<",
             )
-            .to(keyCaps.scale, { x: 5, y: 5, z: 5, duration: 3 }, "<");
+            .to(
+              keycaps.scale,
+              {
+                x: 5,
+                y: 5,
+                z: 5,
+                duration: 3,
+              },
+              "0",
+            );
+
+          // Add wave animation to the scroll timeline
           if (keyboardAnimationRef.current) {
             // Collect all switches and keycaps from all rows
             const switchRefs = keyboardAnimationRef.current.switches;

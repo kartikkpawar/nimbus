@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Canvas } from "@react-three/fiber";
 import { SOUND_MAP, Switch } from "../Switch";
 import { Stage } from "@react-three/drei";
-import { LucideVolume2 } from "lucide-react";
+import { Volume2 } from "lucide-react";
 import gsap from "gsap";
 
 type SwitchProps = {
@@ -24,7 +24,10 @@ const switchData: SwitchProps[] = [
 
 export default function index() {
   return (
-    <Bounded className="relative" innerClassName="flex flex-col justify-center">
+    <Bounded
+      className="max-h-100vh relative"
+      innerClassName="flex flex-col justify-center"
+    >
       <FadeIn>
         <h2
           id="switch-playground"
@@ -32,9 +35,9 @@ export default function index() {
         >
           Craft your click
         </h2>
-        <span className="mb-6 max-w-4xl text-xl text-pretty">
+        <div className="mb-6 max-w-4xl text-xl text-pretty">
           The Vapor75 can be customized with one of four premium switch types.
-        </span>
+        </div>
 
         <FadeIn
           targetChildren
@@ -71,7 +74,7 @@ function SwitchWrapper({ hexCode, id: color, name }: SwitchProps) {
         onClick={handleSound}
         className="font-bold-slanted absolute bottom-0 left-0 z-10 flex items-center gap-3 p-6 text-4xl text-white uppercase focus:ring-2 focus:ring-white focus:outline-none"
       >
-        {name} <LucideVolume2 />
+        {name} <Volume2 />
       </button>
       <Canvas
         camera={{
@@ -83,7 +86,7 @@ function SwitchWrapper({ hexCode, id: color, name }: SwitchProps) {
           adjustCamera
           intensity={0.5}
           shadows="contact"
-          environment={"city"}
+          environment="city"
         >
           <Switch
             rotation={[0, Math.PI / 4, 0]}
@@ -110,7 +113,7 @@ function SwitchWrapper({ hexCode, id: color, name }: SwitchProps) {
             {Array.from({ length: 8 }, (_, index) => (
               <tspan
                 key={index}
-                x={`${(index + 1) * 10}`}
+                x={`${(index + 1) * 10}%`}
                 dy={index === 0 ? -40 : 14}
               >
                 {name}

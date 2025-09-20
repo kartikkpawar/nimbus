@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <Fragment>
       <Hero />
-      <Bento />
-      <MarqueeText />
       <KeyTypes />
+      <MarqueeText />
+      <Bento />
       <MarqueeText direction="right" />
       <MultipleKeyboards />
     </Fragment>

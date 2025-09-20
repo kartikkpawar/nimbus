@@ -14,16 +14,17 @@ export default function Hero() {
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion:no-preference)", () => {
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
       const split = SplitText.create(".hero-heading", {
-        type: "chars",
+        type: "chars,lines",
         mask: "lines",
         linesClass: "line++",
       });
-      const tl = gsap.timeline({ delay: 3.2 });
+
+      const tl = gsap.timeline({ delay: 4.2 });
 
       tl.from(split.chars, {
-        opacity: "0",
+        opacity: 0,
         y: -120,
         ease: "back",
         duration: 0.4,
@@ -48,7 +49,8 @@ export default function Hero() {
         },
       );
     });
-    mm.add("(prefers-reduced-motion:reduced)", () => {
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
       gsap.set(".hero-heading, .hero-body", { opacity: 1 });
     });
   });

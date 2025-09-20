@@ -4,13 +4,13 @@ import clsx from "clsx";
 
 const phrases = ["Joyful Experience", "Quality Material", "Precision Crafting"];
 
-export default function index({ direction }: { direction?: string }) {
+const Marquee = ({ direction }: { direction?: string }) => {
   const MarqueeContent = () => (
     <div className="flex items-center bg-gray-200 py-10 whitespace-nowrap">
-      {phrases.map((phrase) => (
-        <Fragment key={phrase}>
+      {phrases.map((item, i) => (
+        <Fragment key={i}>
           <div className="font-bold-slanted px-14 text-[180px] leading-none text-gray-400/80 uppercase [text-box:trim-both_cap_alphabetic] md:text-[260px]">
-            {phrase}
+            {item}
           </div>
           <LogoMark className="size-36 flex-shrink-0" />
         </Fragment>
@@ -32,7 +32,7 @@ export default function index({ direction }: { direction?: string }) {
               direction === "right" && "[animation-direction:reverse]",
             )}
           >
-            <MarqueeContent />
+            {/* Content to duplicate */}
             <MarqueeContent />
             <MarqueeContent />
             <MarqueeContent />
@@ -42,4 +42,6 @@ export default function index({ direction }: { direction?: string }) {
       </div>
     </section>
   );
-}
+};
+
+export default Marquee;
