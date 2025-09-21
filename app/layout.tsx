@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Nimbus Keyboards – Explore premium mechanical keyboards built for gamers, creators, and professionals. Shop sleek, customizable designs with fast shipping and reliable support",
   openGraph: {
-    images: "/og-image.png",
+    images: `${process.env.APP_URL}/og-image.png`,
   },
 };
 
