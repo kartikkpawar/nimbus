@@ -7,6 +7,7 @@ type BoundedProps = {
   className?: string;
   innerClassName?: string;
   children?: ReactNode;
+  id?: string;
 };
 
 export function Bounded({
@@ -15,6 +16,7 @@ export function Bounded({
   className,
   innerClassName,
   children,
+  id,
 }: BoundedProps) {
   return (
     <Comp
@@ -22,6 +24,7 @@ export function Bounded({
         "px-6 py-10 md:py-20 [.header+&]:pt-44 [.header+&]:md:pt-32",
         className,
       )}
+      id={id}
     >
       <div
         className={clsx(

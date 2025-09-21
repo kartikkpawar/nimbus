@@ -52,7 +52,7 @@ export default function Bento() {
   ];
 
   return (
-    <Bounded>
+    <Bounded id="features" className="scroll-pt-6">
       <FadeIn>
         <h2 className="font-bold-slanted mb-8 scroll-pt-6 text-6xl uppercase md:text-8xl">
           Vapor75 Features

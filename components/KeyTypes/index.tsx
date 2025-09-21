@@ -25,8 +25,9 @@ const switchData: SwitchProps[] = [
 export default function index() {
   return (
     <Bounded
-      className="max-h-100vh relative"
+      className="max-h-100vh relative scroll-pt-6"
       innerClassName="flex flex-col justify-center"
+      id="switch-playground"
     >
       <FadeIn>
         <h2

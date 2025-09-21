@@ -61,7 +61,10 @@ export default function MultipleKeyboards() {
     setIsAnimating(false);
   }, []);
   return (
-    <section className="relative flex h-[90vh] min-h-[1000px] flex-col overflow-hidden bg-linear-to-br from-[#0f172a] to-[#062f4a] text-white">
+    <section
+      className="relative flex h-[90vh] min-h-[1000px] scroll-pt-6 flex-col overflow-hidden bg-linear-to-br from-[#0f172a] to-[#062f4a] text-white"
+      id="keycap-changer"
+    >
       <svg
         className="height-auto pointer-events-none absolute top-0 left-0 w-full mix-blend-overlay"
         viewBox="0 0 75 100"
