@@ -67,10 +67,7 @@ export default function PurchaseButton() {
 
   return (
     <Bounded>
-      <FadeIn
-        className="relative mx-auto max-w-7xl px-4 text-center"
-        targetChildren
-      >
+      <div className="relative mx-auto max-w-7xl px-4 text-center">
         <p className="mb-6 text-xl font-medium text-gray-700 md:text-2xl">
           Experience Peak Performance
         </p>
@@ -115,7 +112,7 @@ export default function PurchaseButton() {
           </h2>
           Join 10,000+ satisfied customers worldwide
         </div>
-      </FadeIn>
+      </div>
     </Bounded>
   );
 }

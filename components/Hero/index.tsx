@@ -10,10 +10,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import clsx from "clsx";
 import { useProgress } from "@react-three/drei";
 import { Loader } from "../Loader";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
 export default function Hero() {
+  const router = useRouter();
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
@@ -92,7 +94,10 @@ export default function Hero() {
               and switches
             </span>
           </div>
-          <button className="font-bold-slanted clic group flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1 text-2xl uppercase transition disabled:grayscale">
+          <button
+            className="font-bold-slanted clic group flex w-fit cursor-pointer items-center gap-1 rounded bg-[#01A7E1] px-3 py-1 text-2xl uppercase transition disabled:grayscale"
+            onClick={() => router.push("/success")}
+          >
             Buy Vapor75{" "}
             <span className="transition group-hover:translate-x-1">{">"}</span>
           </button>
