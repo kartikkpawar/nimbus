@@ -17,10 +17,10 @@ export function Footer() {
           </p>
         </div>
         <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-end">
-          <FooterLink href="#">Products</FooterLink>
-          <FooterLink href="#">About</FooterLink>
-          <FooterLink href="#">Support</FooterLink>
-          <FooterLink href="#">Contact</FooterLink>
+          <FooterLink>Products</FooterLink>
+          <FooterLink>About</FooterLink>
+          <FooterLink>Support</FooterLink>
+          <FooterLink>Contact</FooterLink>
         </nav>
       </div>
     </Bounded>
@@ -28,17 +28,13 @@ export function Footer() {
 }
 
 type FooterLinkProps = {
-  href: string;
   children: ReactNode;
 };
 
-function FooterLink({ href, children }: FooterLinkProps) {
+function FooterLink({ children }: FooterLinkProps) {
   return (
-    <Link
-      href={href}
-      className="text-sm transition-colors hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-    >
+    <span className="cursor-pointer text-sm transition-colors select-none hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
       {children}
-    </Link>
+    </span>
   );
 }

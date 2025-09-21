@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bounded } from "../Bounded";
 import { Canvas } from "@react-three/fiber";
 import HeroScene from "./Scene";
@@ -7,6 +7,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import clsx from "clsx";
+import { useProgress } from "@react-three/drei";
+import { Loader } from "../Loader";
 
 gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
@@ -62,7 +65,7 @@ export default function Hero() {
           <HeroScene />
         </Canvas>
       </div>
-
+      <LoaderWrapper />/
       <div className="hero-content absolute inset-x-0 top-0 h-dvh">
         <Bounded
           fullWidth
@@ -96,5 +99,30 @@ export default function Hero() {
         </Bounded>
       </div>
     </section>
+  );
+}
+
+function LoaderWrapper() {
+  const { active } = useProgress();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (active) {
+      setIsLoading(true);
+    } else {
+      const timer = setTimeout(() => setIsLoading(false), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [active]);
+
+  return (
+    <div
+      className={clsx(
+        "motion-safe:transition-opacity motion-safe:duration-700",
+        isLoading ? "opacity-100" : "pointer-events-none opacity-0",
+      )}
+    >
+      <Loader />
+    </div>
   );
 }
