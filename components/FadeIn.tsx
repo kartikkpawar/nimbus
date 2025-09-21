@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
