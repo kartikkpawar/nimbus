@@ -12,9 +12,12 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-  title: "Nimbius Keyboards",
+  title: "Nimbus Keyboards",
   description:
     "Nimbus Keyboards – Explore premium mechanical keyboards built for gamers, creators, and professionals. Shop sleek, customizable designs with fast shipping and reliable support",
+  openGraph: {
+    images: "/og-image.png",
+  },
 };
 
 export default function RootLayout({
